@@ -1,0 +1,56 @@
+spring:
+  main:
+    allow-circular-references: true
+  data:
+    mongodb:
+      port: 27017
+      host: username:password@e-auction.cluster-cwmnescyin50.us-east-1.docdb.amazonaws.com
+      embedded:
+        storage:
+          repl-set-name: rs0
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  application:
+    name: e-auction-query-api
+  cloud:
+    discovery:
+       enabled: true
+    client:
+      hostname: localhost
+  rabbitmq:
+    username: e-auction-rmq
+    password: Password@123
+    port: 5671
+    host: b-b8fb72c6-7102-4e33-8662-a3e8b0ba8211.mq.us-east-1.amazonaws.com
+    ssl:
+      enabled: true
+      algorithm: TLSv1.2
+
+axon:
+  amqp:
+    exchange: amq.fanout
+  eventhandling:
+    processors:
+      name:
+        source: myQueueMessageSource
+
+server:
+  port: 9083
+  servlet:
+    context-path: /query
+
+jwt:
+  secret: e-auction
+  root-username: user
+  root-password: pass
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
+        
+
+  

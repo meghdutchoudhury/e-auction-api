@@ -1,0 +1,98 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9081/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+    hostname: localhost
+    prefer-ip-address: true
+
+app:
+  context-path: e-auction
+  api-prefix: api
+  api-version: v1
+  route-prefix: /${app.context-path}/${app.api-prefix}/${app.api-version}
+
+spring:
+  application:
+    name: e-auction-api-gateway
+  cloud:
+    discovery:
+       enabled: true
+    client:
+      hostname: localhost
+    gateway:
+      routes:
+      - id: query-route
+        uri: lb://E-AUCTION-QUERY-API
+        predicates:
+        - Method=GET
+        - Path=/e-auction/api/v1/**
+        filters:
+        - name: RewritePath
+          args:
+            regexp: "${app.route-prefix}/(?<routepath>.*)"
+            replacement: "/query/${routepath}"
+        - name: CircuitBreaker
+          args:
+            name: queryFallback
+            fallbackUri: forward:/fallback/message
+      - id: command-route
+        uri: lb://E-AUCTION-COMMAND-API
+        predicates:
+        - Method=POST,PUT,PATCH,DELETE
+        - Path=/e-auction/api/v1/**
+        filters:
+        - name: RewritePath
+          args:
+            regexp: "${app.route-prefix}/(?<routepath>.*)"
+            replacement: "/command/${routepath}"
+        - name: CircuitBreaker
+          args:
+            name: commandFallback
+            fallbackUri: forward:/fallback/message
+      - id: openapi_command
+        uri: lb://E-AUCTION-COMMAND-API
+        predicates:
+        - Path=/v3/api-docs/command
+        filters:
+        - RewritePath=/v3/api-docs/command, /command/v3/api-docs
+      - id: openapi_query
+        uri: lb://E-AUCTION-QUERY-API
+        predicates:
+        - Path=/v3/api-docs/query
+        filters:
+        - RewritePath=/v3/api-docs/query, /query/v3/api-docs
+
+springdoc:
+  cache:
+    disabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    use-root-path: true
+
+server:
+  port: 9080
+  forward-headers-strategy: framework
+  ssl:
+    enabled: false
+    key-store: classpath:e-auction.p12
+    key-store-password: e-auction
+    keyStoreType: PKCS12
+    keyAlias: e-auction
+    
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+       include: "*"
+
+
+
+

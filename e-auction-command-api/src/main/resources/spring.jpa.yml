@@ -1,0 +1,1 @@
+spring.jpa.properties.hibernate.ogm.datastore.create_database: true

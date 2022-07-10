@@ -1,0 +1,20 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "e-auction-command-api",
+      "image": "043953693619.dkr.ecr.us-east-1.amazonaws.com/e-auction-command-api:latest",
+      "environment": [
+        {
+          "name": "SPRING_PROFILES_ACTIVE",
+          "value": "cloud"
+        }
+      ],
+      "essential": true,
+      "memory": 500
+   }],
+  "Ports": [{
+    "ContainerPort": "9082",
+    "HostPort": "9082"
+  }]
+} 

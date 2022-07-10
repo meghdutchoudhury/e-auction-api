@@ -1,0 +1,1 @@
+include "e-auction-api-gateway", "e-auction-eureka-server", "e-auction-command-api", "e-auction-query-api"
