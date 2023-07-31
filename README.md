@@ -73,7 +73,7 @@ Code coverage has been generated using JaCoCo – Java Code Coverage tool. The r
 
 CI/CD has been configured for the API project with stages: build & test. The runner being used is a gitlab-runner docker instance configured to run on the VDI itself.
 
-A performance test suite has been developed using Apache JMeter for login, getting products, and getting bids for product functionality since these are the endpoints that may see the highest traffic. The file has been uploaded to Gitlab (link in the Deliverables section).
+A performance test suite has been developed using Apache JMeter for login, getting products, and getting bids for product functionality since these are the endpoints that may see the highest traffic.
 
 ### 3.6 Others
 
