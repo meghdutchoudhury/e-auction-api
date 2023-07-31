@@ -45,11 +45,13 @@ Since the application follows the CQRS design pattern, for write-heavy workloads
 
 The application is resilient against catastrophic system failures due to the persistent event store backed by MongoDB (using Axon framework) and message store by RabbitMQ. No transactional data will be lost on a system outage since the queued events will be able to continue processing on service restoration. To provide even better tolerance against failures, we may define a failover cluster that will be brought up if the failures on the primary cluster cross a certain threshold as per defined metrics.
 
-## Architecture
+## Technologies
 
 ### 3.1 Microservices
 
 The design pattern being used is CQRS. The application uses Eureka service for discovery, Spring Cloud API Gateway to serve as the composite/front for all API operations, a Command layer to process write operations, and a Query layer to handle read requests to the application data.
+
+![image](https://github.com/meghdutchoudhury/e-auction-api/assets/29727402/df550938-4b36-446e-9da4-59e041cc5770)
 
 ### 3.2 Database
 
@@ -101,9 +103,9 @@ A performance test suite has been developed using Apache JMeter for login, getti
 - Code coverage is also being reported. Both test case results and coverage percentages are directly integrated and viewable under the CI/CD > Jobs section of Gitlab.
 - ELK Stack has been deployed using the public docker image sebp/elk. The application has been integrated with the Elasticsearch service running at port 9200, to connect and upload the protractor e2e test results using the Winston library, and the same is viewable on the Kibana Web Interface.
 
-## Cloud
+## Architecture
 
-### 5.1 Architecture
+### 5.1 Cloud Infrastructure
 
 The below AWS technologies have been used in the design of this application on the cloud side. The deployment and design have been depicted in the given diagrams.
 
@@ -121,3 +123,10 @@ The below AWS technologies have been used in the design of this application on t
 - CloudWatch
 - Virtual Private Cloud
 - SNS, SQS, SES
+
+  ![image](https://github.com/meghdutchoudhury/e-auction-api/assets/29727402/df4a6eab-4863-43a2-837d-782c29f9f255)
+
+### 5.2 API Architecture
+
+  ![image](https://github.com/meghdutchoudhury/e-auction-api/assets/29727402/bcfed752-22cf-4aec-b72e-145dcbb809b4)
+
