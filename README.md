@@ -128,6 +128,6 @@ The below AWS technologies have been used in the design of this application on t
 
 ### 5.2 API Architecture
 
- ![image](https://github.com/meghdutchoudhury/e-auction-api/assets/29727402/862dea8b-ae46-4953-81de-a8e3f3b0099f)
+![CleanShot 2023-07-31 at 11 28 49](https://github.com/meghdutchoudhury/e-auction-api/assets/29727402/dd0bab13-2f61-4507-86ce-f208223e6bba)
 
 
