@@ -51,7 +51,7 @@ The application is resilient against catastrophic system failures due to the per
 
 The design pattern being used is CQRS. The application uses Eureka service for discovery, Spring Cloud API Gateway to serve as the composite/front for all API operations, a Command layer to process write operations, and a Query layer to handle read requests to the application data.
 
-![image](https://github.com/meghdutchoudhury/e-auction-api/assets/29727402/df550938-4b36-446e-9da4-59e041cc5770)
+![CleanShot 2023-07-31 at 11 30 28](https://github.com/meghdutchoudhury/e-auction-api/assets/29727402/9059b30b-4647-48ac-9f39-71ab8d180898)
 
 ### 3.2 Database
 
@@ -124,7 +124,7 @@ The below AWS technologies have been used in the design of this application on t
 - Virtual Private Cloud
 - SNS, SQS, SES
 
-  ![image](https://github.com/meghdutchoudhury/e-auction-api/assets/29727402/df4a6eab-4863-43a2-837d-782c29f9f255)
+![CleanShot 2023-07-31 at 11 29 47](https://github.com/meghdutchoudhury/e-auction-api/assets/29727402/4987b9ff-c374-4d48-9243-0da75c1dfa17)
 
 ### 5.2 API Architecture
 
